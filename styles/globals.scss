@@ -10,7 +10,19 @@
 .header-settings {
     display: flex;
     width: 20%;
-    justify-content: end;
+    justify-content: flex-end;
+}
+
+.blue-color {
+  color: rgb(89, 161, 190);
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.large-font {
+  font-size: 2em;
 }
 
 .header-logo {
