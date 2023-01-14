@@ -10,9 +10,14 @@ interface TypingGameDemoProps {
 
 //let isBlur = true
 
-
 const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
-    const [isBlur, setIsBlur] = useState(true);
+  const [isBlur, setIsBlur] = useState(true)
+  useEffect(() => {
+    const element = document.getElementsByClassName('curr-letter')[0]
+    console.log(element)
+    element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+  })
+
   const {
     states: {
       charsState,
@@ -26,28 +31,29 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
       endTime,
     },
     actions: { insertTyping, resetTyping, deleteTyping },
-  } = useTypingGame(code, { skipCurrentWordOnSpace: false });
+  } = useTypingGame(code, { skipCurrentWordOnSpace: false })
 
-  const [accuracy, setAccuracy] = useState(0.0);
+  const [accuracy, setAccuracy] = useState(0.0)
 
   useEffect(() => {
-    setAccuracy(correctChar * 100 / (correctChar + errorChar));
+    setAccuracy((correctChar * 100) / (correctChar + errorChar))
   }, [correctChar, errorChar])
 
-  const [accuracyList, setAccuracyList] = useState<number[]>([]);
+  const [accuracyList, setAccuracyList] = useState<number[]>([])
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setAccuracyList([...accuracyList, accuracy]);
-    }, 1000);
+      setAccuracyList([...accuracyList, accuracy])
+    }, 1000)
 
-    console.log(accuracyList);
+    console.log(accuracyList)
 
-    return () => clearInterval(intervalId);
-  }, [accuracyList]);
+    return () => clearInterval(intervalId)
+  }, [accuracyList])
 
   const handleClick = () => {
-      setIsBlur(false)}
+    setIsBlur(false)
+  }
 
   const handleKey = (key: any) => {
     if (key === 'Escape') {
@@ -76,51 +82,55 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   //if
 
   return (
-  <div className="page_head">
-  {isBlur && <p className="blurred_click">Click on the text below and start typing (esc to reset)</p>}
-    <div className={isBlur ? "blur": undefined}
-        onClick={() => setIsBlur(false)}
-    >
+    <div className="page_head">
+      {isBlur && (
+        <p className="blurred_click blue-color bold-text large-font">
+          
+           Click{" "}
+           <i className="fas fa-location-arrow"></i>
+           {" "} or press any key to focus (esc to reset)
+        </p>
+      )}
       <div
-        className="typing-editor"
-        onKeyDown={(e) => {
-          handleKey(e.key)
-          e.preventDefault()
-        }}
-        tabIndex={0}
+        className={isBlur ? 'blur' : undefined}
+        onClick={() => setIsBlur(false)}
       >
-        <h1>{title}</h1>
-        <pre>
-          {code.split('').map((char: string, index: number) => {
-            let state = charsState[index]
-            let color =
-              state === 0
-                ? INIT_CODE_COLOUR
-                : state === 1
-                ? CORRECT_CHAR
-                : 'red'
-            return (
-              <span
-                key={char + index}
-                style={{
-                  color: color,
-                  display: `${char == '\n' ? '' : ''}`,
-                }}
-                className={currIndex + 1 === index ? 'curr-letter' : ''}
-              >
-                {char}
-              </span>
-            )
-          })}
-        </pre>
-        <div>
-          Metrics:
-          <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
+        <h1 className="editor_title">{title}</h1>
+        <div
+          className="typing-editor"
+          onKeyDown={(e) => {
+            handleKey(e.key)
+            e.preventDefault()
+          }}
+          tabIndex={0}
+        >
+          <pre>
+            {code.split('').map((char: string, index: number) => {
+              let state = charsState[index]
+              let color =
+                state === 0
+                  ? INIT_CODE_COLOUR
+                  : state === 1
+                  ? CORRECT_CHAR
+                  : 'red'
+              return (
+                <span
+                  key={char + index}
+                  style={{
+                    color: color,
+                    display: `${char == '\n' ? '' : ''}`,
+                  }}
+                  className={currIndex + 1 === index ? 'curr-letter' : ''}
+                >
+                  {char}
+                </span>
+              )
+            })}
+          </pre>
         </div>
       </div>
-      </div>
 
-      <pre>
+      {/* <pre>
         {JSON.stringify(
           {
             startTime,
@@ -135,7 +145,11 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           null,
           2,
         )}
-      </pre>
+      </pre> */}
+      <div>
+        Metrics:
+        <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
+      </div>
     </div>
   )
 }
