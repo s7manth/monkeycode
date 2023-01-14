@@ -1,4 +1,3 @@
-import { maxHeaderSize } from 'http'
 import React from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { demo_cpp_code } from '../data/demo'
@@ -17,7 +16,7 @@ const TypingGameDemo = () => {
       startTime,
       endTime,
     },
-    actions: { insertTyping, resetTyping, deleteTyping, setCurrIndex },
+    actions: { insertTyping, resetTyping, deleteTyping },
   } = useTypingGame(text)
 
   const handleKey = (key: any) => {
@@ -61,7 +60,7 @@ const TypingGameDemo = () => {
                 key={char + index}
                 style={{
                   color: color,
-                  display: `${char == '\n' ? 'block' : ''}`,
+                  display: `${char == '\n' ? '' : ''}`,
                 }}
                 className={currIndex + 1 === index ? 'curr-letter' : ''}
               >
