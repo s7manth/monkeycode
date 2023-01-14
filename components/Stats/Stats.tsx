@@ -27,6 +27,10 @@ function Stats(props: any) {
   )
   const options = {
     responsive: true,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false,
+    },
     plugins: {
       legend: {
         position: 'top' as const,
@@ -50,8 +54,6 @@ function Stats(props: any) {
     },
   }
 
-
-
   const [data, setData] = useState<any[]>()
   const [labels, setLabels] = useState<number[]>()
 
@@ -62,7 +64,7 @@ function Stats(props: any) {
       .fill(0)
       .map((_, idx) => 1 + idx)
 
-    setLabels(_labels);
+    setLabels(_labels)
     const _data = {
       labels: _labels,
       datasets: [
@@ -89,13 +91,12 @@ function Stats(props: any) {
         },
       ],
     }
-    setData(_data);
+    setData(_data)
   }, [props])
-
 
   return (
     <div className={StatsModuleCSS.stats}>
-      {data &&
+      {data && (
         <>
           <Line
             options={options}
@@ -119,7 +120,7 @@ function Stats(props: any) {
             </div>
           </div>
         </>
-      }
+      )}
     </div>
   )
 }
