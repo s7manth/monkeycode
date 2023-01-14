@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
@@ -8,15 +7,25 @@ interface TypingGameDemoProps {
   title: string
   code: string
   handleChange: any
+  isBlur: boolean
+  setIsBlur: any
+  hasEnded: boolean
+  setAccuracyData: any
 }
 
 //let isBlur = true
 
-const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
-  const [isBlur, setIsBlur] = useState(true)
+const TypingGameDemo = ({
+  title,
+  code,
+  handleChange,
+  isBlur,
+  setIsBlur,
+  hasEnded,
+  setAccuracyData,
+}: TypingGameDemoProps) => {
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
-    console.log(element)
     element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   })
 
@@ -46,26 +55,37 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   const [accuracyList, setAccuracyList] = useState<number[]>([])
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setAccuracyList([...accuracyList, accuracy])
-    }, 1000)
+    console.log(isBlur, hasEnded)
+    if (!isBlur && !hasEnded) {
+      const intervalId = setInterval(() => {
+        if (!isNaN(accuracy)) {
+          return setAccuracyList([...accuracyList, accuracy])
+        } else {
+          return setAccuracyList([...accuracyList, 100])
+        }
+      }, 1000)
 
-    console.log(accuracyList)
+      console.log(accuracyList)
+      setAccuracyData(accuracyList)
 
-    return () => clearInterval(intervalId)
-  }, [accuracyList])
+      return () => clearInterval(intervalId)
+    }
+    if (hasEnded) {
+      setAccuracyData(accuracyList)
+    }
+  }, [isBlur, hasEnded, accuracyList])
 
   const handleClick = () => {
     setIsBlur(false)
   }
 
   useEffect(() => {
-    const refreshButton = document.getElementById("refresh-button");
-    if(refreshButton)
-        refreshButton.addEventListener("click", () => {
-          resetTyping();
-        });
-  }, []);
+    const refreshButton = document.getElementById('refresh-button')
+    if (refreshButton)
+      refreshButton.addEventListener('click', () => {
+        resetTyping()
+      })
+  }, [])
 
   const handleKey = (key: any) => {
     if (key === 'Escape') {
@@ -95,7 +115,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   }
   return (
     <div className="page_head">
-        <button id="refresh-button">Refresh</button>
+      <button id="refresh-button">Refresh</button>
       {isBlur && (
         <p className="blurred_click blue-color bold-text large-font">
           Click <i className="fas fa-location-arrow"></i> or press any key to

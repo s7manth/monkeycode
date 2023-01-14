@@ -1,8 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Countdown.module.scss'
 
-const Countdown: React.FC = () => {
-  const [countdown, setCountdown] = useState(2)
+interface CountDownProps {
+  initialTime: number
+  hasStarted: boolean
+  setHasEnded: any
+}
+
+const Countdown = ({
+  initialTime,
+  hasStarted,
+  setHasEnded,
+}: CountDownProps) => {
+  const [countdown, setCountdown] = useState(initialTime)
   const [isCounting, setIsCounting] = useState(false)
 
   const startCountdown = () => {
@@ -12,6 +22,7 @@ const Countdown: React.FC = () => {
       setCountdown((c) => {
         if (c === 0) {
           setIsCounting(false)
+          setHasEnded(true)
           return c
         }
         return c - 1
@@ -24,11 +35,14 @@ const Countdown: React.FC = () => {
     setIsCounting(false)
   }
 
+  useEffect(() => {
+    if (hasStarted) {
+      startCountdown()
+    }
+  }, [hasStarted])
   return (
     <div className={styles.container}>
       <div className="countdown_timer">{countdown}</div>
-      <button onClick={startCountdown}>Start Countdown</button>
-      <button onClick={stopCountdown}>Stop Countdown</button>
     </div>
   )
 }
