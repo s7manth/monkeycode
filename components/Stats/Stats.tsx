@@ -83,7 +83,7 @@ function Stats(props: any) {
           label: 'WPM',
           data: props.correctCharsTyped.map(
             (value: number, idx: number) =>
-              (value + props.errorCharsTyped[idx]) / 4,
+              (value + props.errorCharsTyped[idx]) * 2/ (idx + 1),
           ),
           borderColor: '#36a2eb',
           backgroundColor: '#a0d0f5',
