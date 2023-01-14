@@ -1,9 +1,13 @@
 import React from 'react'
 import useTypingGame from 'react-typing-game-hook'
-import { demo_cpp_code } from '../../data/demo'
+import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 
-const TypingGameDemo = () => {
-  const text = demo_cpp_code
+interface TypingGameDemoProps {
+  title: string
+  code: string
+}
+
+const TypingGameDemo = ({ title, code }: TypingGameDemoProps) => {
   const {
     states: {
       charsState,
@@ -17,7 +21,7 @@ const TypingGameDemo = () => {
       endTime,
     },
     actions: { insertTyping, resetTyping, deleteTyping },
-  } = useTypingGame(text)
+  } = useTypingGame(code)
 
   const handleKey = (key: any) => {
     if (key === 'Escape') {
@@ -28,11 +32,11 @@ const TypingGameDemo = () => {
       insertTyping(key)
     } else if (key === 'Enter') {
       insertTyping(key)
-      if (text[currIndex + 1] === '\n') {
+      if (code[currIndex + 1] === '\n') {
         let newCurrIndex = currIndex + 1
-        while (text[newCurrIndex] == ' ' || text[newCurrIndex] == '\n') {
+        while (code[newCurrIndex] == ' ' || code[newCurrIndex] == '\n') {
           newCurrIndex++
-          insertTyping(text[newCurrIndex])
+          insertTyping(code[newCurrIndex])
         }
         deleteTyping(false)
       }
@@ -41,20 +45,25 @@ const TypingGameDemo = () => {
 
   return (
     <div>
-      <h1>React Typing Game Hook Demo</h1>
       <p>Click on the text below and start typing (esc to reset)</p>
-      <code
-        className="typing-test"
+      <div
+        className="typing-editor"
         onKeyDown={(e) => {
           handleKey(e.key)
           e.preventDefault()
         }}
         tabIndex={0}
       >
+        <h1>{title}</h1>
         <pre>
-          {text.split('').map((char: string, index: number) => {
+          {code.split('').map((char: string, index: number) => {
             let state = charsState[index]
-            let color = state === 0 ? 'black' : state === 1 ? 'green' : 'red'
+            let color =
+              state === 0
+                ? INIT_CODE_COLOUR
+                : state === 1
+                ? CORRECT_CHAR
+                : 'red'
             return (
               <span
                 key={char + index}
@@ -69,7 +78,7 @@ const TypingGameDemo = () => {
             )
           })}
         </pre>
-      </code>
+      </div>
 
       <pre>
         {JSON.stringify(

@@ -1,6 +1,9 @@
+@use "./variables" as *;
+
 .typing_test {
   font-size: 3rem;
   outline: none;
+  background-color: $bgColor;
 }
 
 .curr_letter {
