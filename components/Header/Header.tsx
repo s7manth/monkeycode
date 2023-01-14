@@ -32,7 +32,10 @@ const Header: React.FC<Props> = ({ theme, setTheme}) => {
   return (
     <header className={`header ${theme}`}>
       <div className="header-logo" style={{ color: 'white'}}>
-        <h1>MonkeyCode</h1>
+        <h2>
+            <i className="fas fa-keyboard"></i>
+            {" "} MonkeyCode
+            </h2>
       </div>
       <div className="header-settings" style={{ color: 'white'}}>
           <div className="header-settings-dropdown" style={{ color: 'white'}}>
