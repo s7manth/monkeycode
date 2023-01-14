@@ -84,7 +84,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         </pre>
       </div>
 
-      <pre>
+      {/* <pre>
         {JSON.stringify(
           {
             startTime,
@@ -99,7 +99,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           null,
           2,
         )}
-      </pre>
+      </pre> */}
     </div>
   )
 }

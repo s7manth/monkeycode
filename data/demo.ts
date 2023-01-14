@@ -37,7 +37,7 @@ void dfs(int v) {
     }
 }`
 
-export const CODES = [
+export const CPP_CODES = [
   { title: code_title, code: demo_cpp_code },
   { title: 'Implementing DFS', code: DFS_CODE },
 ]

@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import Footer from '../components/Footer/Footer'
 import TypingGameDemo from '../components/TypingEditor/TypingEditor'
-import { CODES, code_title, demo_cpp_code } from '../data/demo'
+import { CPP_CODES } from '../data/demo'
+import styles from '../styles/Home.module.scss'
 
 const App = () => {
   const [curCodeIdx, setCurCodeIdx] = useState(0)
@@ -10,7 +12,13 @@ const App = () => {
   }
 
   return (
-    <TypingGameDemo {...CODES[curCodeIdx]} handleChange={handleCompletion} />
+    <div className={styles.container}>
+      <TypingGameDemo
+        {...CPP_CODES[curCodeIdx]}
+        handleChange={handleCompletion}
+      />
+      <Footer />
+    </div>
   )
 }
 
