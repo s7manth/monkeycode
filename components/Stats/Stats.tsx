@@ -42,19 +42,19 @@ function Stats(props: any) {
     },
     scales: {
       y: {
-        type: 'linear',
+        type: 'linear' as const,
         display: true,
-        position: 'left',
+        position: 'left' as const,
       },
       y1: {
-        type: 'linear',
+        type: 'linear' as const,
         display: true,
-        position: 'right',
+        position: 'right' as const,
       },
     },
   }
 
-  const [data, setData] = useState<any[]>()
+  const [data, setData] = useState<any>()
   const [labels, setLabels] = useState<number[]>()
   const [totalCorrect, setTotalCorrect] = useState<number>(0)
   const [totalError, setTotalError] = useState<number>(0)
