@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 
+
+
 interface TypingGameDemoProps {
   title: string
   code: string
@@ -34,6 +36,14 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   } = useTypingGame(code, { skipCurrentWordOnSpace: false })
 
   const [accuracy, setAccuracy] = useState(0.0)
+
+  useEffect(() => {
+    const refreshButton = document.getElementById("refresh-button");
+    if(refreshButton)
+        refreshButton.addEventListener("click", () => {
+          resetTyping();
+        });
+  }, []);
 
   useEffect(() => {
     setAccuracy((correctChar * 100) / (correctChar + errorChar))
@@ -86,11 +96,14 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     <div className="page_head">
       {isBlur && (
         <p className="blurred_click blue-color bold-text large-font">
-          Click <i className="fas fa-location-arrow"></i> or press any key to
-          focus (esc to reset)
+           Click{" "}
+           <i className="fas fa-location-arrow"></i>
+           {" "} or press any key to focus (esc to reset)
         </p>
       )}
-      <div
+       {/* <i>className="fa fa-refresh transparent" aria-hidden="true"></div></i> */}
+      <button id="refresh-button">Refresh</button>
+      <div 
         className={isBlur ? 'blur' : undefined}
         onClick={() => setIsBlur(false)}
       >
