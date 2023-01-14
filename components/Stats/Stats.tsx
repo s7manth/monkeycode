@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 // props-> wpm, accuracy, time, accuracylist, corrChar, errChar, language, mmc
 
@@ -43,8 +44,8 @@ function Stats(props: any) {
             {
                 label: 'Result',
                 data: props.accuracy_list || Array(props.time || 30).fill(0).map((_, idx) => 1 + idx),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgb(219,185,65)',
+                backgroundColor: 'gb(219,185,65)',
             }
         ]
     };
