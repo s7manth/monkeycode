@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducer";
-import "stylesheets/Footer.scss";
+import "./Footer.scss";
 
 interface Contributor {
     avatar_url: string;

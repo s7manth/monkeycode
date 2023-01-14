@@ -1,5 +1,5 @@
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
-import styles from "stylesheets/CommandPallet.module.scss";
+import styles from "./CommandPallet.module.scss";
 import { options, Options } from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setTime, setTheme, setType } from "../../store/actions";

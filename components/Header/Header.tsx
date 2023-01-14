@@ -9,8 +9,8 @@ import {
     timerSet,
 } from "../../store/actions";
 import { State } from "../../store/reducer";
-import "stylesheets/Header.scss";
-import "stylesheets/AnimatedTheme.scss";
+import "./Header.scss";
+import "../../stylesheets/AnimatedTheme.scss";
 
 export interface Options {
     time: number[];
