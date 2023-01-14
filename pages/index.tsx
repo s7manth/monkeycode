@@ -6,6 +6,7 @@ import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CODES, CPP_CODES } from '../data/demo'
 import styles from '../styles/Home.module.scss'
 
+
 const App = () => {
   const [curCodeIdx, setCurCodeIdx] = useState(0)
 

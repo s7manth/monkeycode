@@ -85,7 +85,10 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     <div className="page_head">
       {isBlur && (
         <p className="blurred_click blue-color bold-text large-font">
-          Click or press any key to focus (esc to reset)
+          
+           Click{" "}
+           <i className="fas fa-location-arrow"></i>
+           {" "} or press any key to focus (esc to reset)
         </p>
       )}
       <div
