@@ -7,6 +7,23 @@
   --fg-color: #474747;
 }
 
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+
+.ret-curr-letter::before {
+  content: '\23CE';
+  color: white;
+  border: 1px solid $underLineColor;
+  padding: 0 0.1em;
+  font-weight: bold;
+}
+
 body {
   background-color: $bgColor;
 }
@@ -72,7 +89,7 @@ body {
   //padding: 10px;
 }
 .color-icon {
-  color: $underLineColor
+  color: $underLineColor;
 }
 
 .header-settings-label {
