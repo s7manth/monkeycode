@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ theme, setTheme, selectedLanguage, setSelectedLanguage, selectedTime, setSelectedTime }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  //const [isOpen, setIsOpen] = useState(false);
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setTheme(event.target.value);
@@ -20,8 +20,8 @@ const Header: React.FC<Props> = ({ theme, setTheme, selectedLanguage, setSelecte
     setSelectedLanguage(event.target.value);
   };
 
-  const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTime(Number(event.target.value));
+  const handleTimeChange = (newTime: number) => {
+    setSelectedTime(newTime);
   };
 
   return (
@@ -30,18 +30,7 @@ const Header: React.FC<Props> = ({ theme, setTheme, selectedLanguage, setSelecte
         <h1>MonkeyCode</h1>
       </div>
       <div className="header-settings" style={{ color: 'white'}}>
-        <button onClick={() => setIsOpen(!isOpen)}>
-          <i className="fas fa-cog"></i>
-        </button>
-        {isOpen && (
           <div className="header-settings-dropdown" style={{ color: 'white'}}>
-            <label>
-              Theme:
-              <select value={theme} onChange={handleThemeChange} style={{ color: 'white'}}>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </select>
-            </label>
             <label>
               Language:
               <select value={selectedLanguage} onChange={handleLanguageChange} style={{ color: 'white'}}>
@@ -50,17 +39,14 @@ const Header: React.FC<Props> = ({ theme, setTheme, selectedLanguage, setSelecte
                 <option value="c++">C++</option>
               </select>
             </label>
-            <label>
+          <div className="header-settings-label time-options" style={{ color: 'white'}}>
               Time:
-              <select value={selectedTime} onChange={handleTimeChange} style={{ color: 'white'}}>
-                <option value={15}>15 seconds</option>
-                <option value={30}>30 seconds</option>
-                <option value={45}>45 seconds</option>
-                <option value={60}>60 seconds</option>
-              </select>
-            </label>
+              <button className={`time-option ${selectedTime === 15 ? 'active' : ''}`} onClick={() => handleTimeChange(15)}>15s</button>
+              <button className={`time-option ${selectedTime === 30 ? 'active' : ''}`} onClick={() => handleTimeChange(30)}>30s</button>
+              <button className={`time-option ${selectedTime === 45 ? 'active' : ''}`} onClick={() => handleTimeChange(45)}>45s</button>
+              <button className={`time-option ${selectedTime === 60 ? 'active' : ''}`} onClick={() => handleTimeChange(60)}>60s</button>
+            </div>
           </div>
-        )}
       </div>
     </header>
   );
