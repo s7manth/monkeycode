@@ -79,6 +79,10 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         }
         deleteTyping(false)
       }
+    } else if (key === 'Tab') {
+      for (var i = 0; i < 4; i++) {
+        insertTyping(' ')
+      }
     }
   }
   return (
@@ -123,7 +127,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
                       currIndex + 1 === index ? 'curr-letter' : ''
                     } `}
                   >
-                    {char}
+                    {char == ' ' && color == 'red' ? '␣' : char}
                   </span>
                 )
               })}
