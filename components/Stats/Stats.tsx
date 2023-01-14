@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import StatsModuleCSS from "./Stats.module.scss"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,7 +24,6 @@ function Stats(props: any) {
         Tooltip,
         Legend
       );
-      
     const options = {
         responsive: true,
         plugins: {
@@ -36,9 +36,7 @@ function Stats(props: any) {
             },
         }
     };
-    
     const labels = Array(props.time || 30).fill(0).map((_, idx) => 1 + idx);
-    
     const data = {
         labels,
         datasets: [
@@ -52,14 +50,22 @@ function Stats(props: any) {
     };
 
   return (
-    <div>
-        <p>WPM: {props.wpm || 0}</p>
-        <p>Accuracy: {props.accuracy || 0}</p>
-        <p>Time: {props.time || 0}</p>
-        <p>Characters: {props.corrchar || 0} / {props.errchar || 0}</p>
-        <p>Language: {props.language || "Dummy"}</p>
-        <p>Most mistyped character: {props.mmc || "c"}</p>
-        <Line options={options} data={data} />
+    <div className={StatsModuleCSS.stats}>
+        <Line options={options} data={data} className={StatsModuleCSS.linegraph} />
+        <div className={StatsModuleCSS.other_stats}>
+            <div>
+            <p>WPM: {props.wpm || 0}</p>
+            <p>Accuracy: {props.accuracy || 0}</p>
+            </div>
+            <div>
+            <p>Time: {props.time || 0}</p>
+            <p>Characters: {props.corrchar || 0} / {props.errchar || 0}</p>
+            </div>
+            <div>
+            <p>Language: {props.language || "Dummy"}</p>
+            <p>Most mistyped character: {props.mmc || "c"}</p>
+            </div>
+        </div>
     </div>
   );
 }

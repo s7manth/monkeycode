@@ -37,7 +37,6 @@ const App = () => {
         handleChange={handleCompletion}
       />
       <Footer />
-      <Stats />
     </div>
   )
 }
