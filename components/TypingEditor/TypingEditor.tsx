@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 
@@ -22,7 +22,25 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
       endTime,
     },
     actions: { insertTyping, resetTyping, deleteTyping },
-  } = useTypingGame(code, { skipCurrentWordOnSpace: false })
+  } = useTypingGame(code, { skipCurrentWordOnSpace: false });
+
+  const [accuracy, setAccuracy] = useState(0.0);
+
+  useEffect(() => {
+    setAccuracy(correctChar * 100 / (correctChar + errorChar));
+  }, [correctChar, errorChar])
+
+  const [accuracyList, setAccuracyList] = useState<number[]>([]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setAccuracyList([...accuracyList, accuracy]);
+    }, 1000);
+
+    console.log(accuracyList);
+
+    return () => clearInterval(intervalId);
+  }, [accuracyList]);
 
   const handleKey = (key: any) => {
     if (key === 'Escape') {
@@ -82,9 +100,13 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
             )
           })}
         </pre>
+        <div>
+          Metrics:
+          <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
+        </div>
       </div>
 
-      {/* <pre>
+      <pre>
         {JSON.stringify(
           {
             startTime,
@@ -99,7 +121,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           null,
           2,
         )}
-      </pre> */}
+      </pre>
     </div>
   )
 }
