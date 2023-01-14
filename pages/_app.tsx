@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div>
       {' '}
       <Head>
-        <title>Monkey Code</title>
+        <title>HumanCode</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Component

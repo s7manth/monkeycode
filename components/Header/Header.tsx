@@ -38,7 +38,7 @@ const Header: React.FC<Props> = ({
     <header className={`header ${currTheme}`}>
       <div className="header-logo" style={{ color: 'white' }}>
         <h2>
-          <i className="fas fa-keyboard color-icon"></i> MonkeyCode
+          <i className="fas fa-keyboard color-icon"></i> HumanCode
         </h2>
       </div>
       <div className={styles.header_settings} style={{ color: 'white' }}>
