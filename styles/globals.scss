@@ -12,7 +12,7 @@
 }
 
 .blur {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 
 .blurred_click {
@@ -20,11 +20,11 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2
+  z-index: 2;
 }
 
 .typing-editor {
-    //backdrop-filter: blur(20px);
+  //backdrop-filter: blur(20px);
   font-size: 1.2rem;
   background-color: $bgColor;
   outline: none;
@@ -32,11 +32,11 @@
   max-height: 70vh;
   width: 80vw;
   overflow-y: auto;
+}
 
-  h1 {
-    color: $underLineColor;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.editor_title {
+  color: $underLineColor;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .curr-letter {

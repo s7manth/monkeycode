@@ -92,6 +92,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         className={isBlur ? 'blur' : undefined}
         onClick={() => setIsBlur(false)}
       >
+        <h1 className="editor_title">{title}</h1>
         <div
           className="typing-editor"
           onKeyDown={(e) => {
@@ -100,7 +101,6 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           }}
           tabIndex={0}
         >
-          <h1>{title}</h1>
           <pre>
             {code.split('').map((char: string, index: number) => {
               let state = charsState[index]
@@ -124,10 +124,6 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
               )
             })}
           </pre>
-          <div>
-            Metrics:
-            <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
-          </div>
         </div>
       </div>
 
@@ -147,6 +143,10 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           2,
         )}
       </pre> */}
+      <div>
+        Metrics:
+        <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
+      </div>
     </div>
   )
 }
