@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from './Header.module.scss'
 
 interface Props {
   currTheme: string
@@ -40,39 +41,31 @@ const Header: React.FC<Props> = ({
           <i className="fas fa-keyboard color-icon"></i> MonkeyCode
         </h2>
       </div>
-      <div className="header-settings" style={{ color: 'white' }}>
-        <div className="header-settings-dropdown" style={{ color: 'white' }}>
-          <div
-            className="header-settings-label time-options"
-            style={{ color: 'white' }}
-          >
-            {language_options.map((language) => (
-              <span
-                key={language}
-                className={`time-option ${
-                  currLanguage === language ? 'active' : ''
-                }`}
-                onClick={() => handleLanguageChange(language)}
-              >
-                {language}
-              </span>
-            ))}
-          </div>
+      <div className={styles.header_settings} style={{ color: 'white' }}>
+        <div className={styles.labels} style={{ color: 'white' }}>
+          {language_options.map((language) => (
+            <span
+              key={language}
+              className={`time-option ${
+                currLanguage === language ? 'active' : ''
+              }`}
+              onClick={() => handleLanguageChange(language)}
+            >
+              {language}
+            </span>
+          ))}
+        </div>
 
-          <div
-            className="header-settings-label time-options"
-            style={{ color: 'white' }}
-          >
-            {time_options.map((time) => (
-              <span
-                key={time}
-                className={`time-option ${currTime === time ? 'active' : ''}`}
-                onClick={() => handleTimeChange(time)}
-              >
-                {time}
-              </span>
-            ))}
-          </div>
+        <div className={styles.labels} style={{ color: 'white' }}>
+          {time_options.map((time) => (
+            <span
+              key={time}
+              className={`time-option ${currTime === time ? 'active' : ''}`}
+              onClick={() => handleTimeChange(time)}
+            >
+              {time}
+            </span>
+          ))}
         </div>
       </div>
     </header>
