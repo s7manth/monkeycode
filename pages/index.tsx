@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Countdown from '../components/Countdown/Countdown'
 import Footer from '../components/Footer/Footer'
 import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CPP_CODES } from '../data/demo'
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
+      <Countdown />
       <TypingGameDemo
         {...CPP_CODES[curCodeIdx]}
         handleChange={handleCompletion}

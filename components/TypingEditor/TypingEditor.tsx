@@ -22,7 +22,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
       endTime,
     },
     actions: { insertTyping, resetTyping, deleteTyping },
-  } = useTypingGame(code)
+  } = useTypingGame(code, { skipCurrentWordOnSpace: false })
 
   const handleKey = (key: any) => {
     if (key === 'Escape') {
