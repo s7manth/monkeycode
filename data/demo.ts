@@ -402,7 +402,7 @@ export const CODES = [
             }
         
             public greet() {
-                console.log(\`Hello, my name is ${this.name} and I am ${this.age} years old.\`);
+                console.log(\`Hello, my name is \${this.name} and I am \${this.age} years old.\`);
             }
         }
             
@@ -438,7 +438,7 @@ export const CODES = [
         }
 
         for (let [char, count] of characterCounts) {
-            console.log(\`'${char}': ${count}\`);
+            console.log(\`'\${char}': \${count}\`);
         }
         `
     }, 
@@ -454,7 +454,7 @@ export const CODES = [
                 let result = originalMethod.apply(this, args);
                 let end = performance.now();
         
-                console.log(\`${key} execution time: ${end - start}ms\`);
+                console.log(\`\${key} execution time: \${end - start}ms\`);
         
                 return result;
             }

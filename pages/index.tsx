@@ -6,6 +6,8 @@ import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CPP_CODES } from '../data/demo'
 import styles from '../styles/Home.module.scss'
 
+import Stats from '../components/Stats/Stats';
+
 const App = () => {
   const [curCodeIdx, setCurCodeIdx] = useState(0)
 
@@ -28,6 +30,7 @@ const App = () => {
         handleChange={handleCompletion}
       />
       <Footer />
+      <Stats />
     </div>
   )
 }

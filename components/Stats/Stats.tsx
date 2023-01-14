@@ -1,0 +1,68 @@
+import React, { useState } from 'react'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+// props-> wpm, accuracy, time, accuracylist, corrChar, errChar, language, mmc
+
+function Stats(props: any) {
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend
+      );
+      
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top' as const,
+            },
+            title: {
+                display: true,
+                text: 'Results',
+            },
+        }
+    };
+    
+    const labels = Array(props.time || 30).fill(0).map((_, idx) => 1 + idx);
+    
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Result',
+                data: props.accuracy_list || Array(props.time || 30).fill(0).map((_, idx) => 1 + idx),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+        ]
+    };
+
+  return (
+    <div>
+        <p>WPM: {props.wpm || 0}</p>
+        <p>Accuracy: {props.accuracy || 0}</p>
+        <p>Time: {props.time || 0}</p>
+        <p>Characters: {props.corrchar || 0} / {props.errchar || 0}</p>
+        <p>Language: {props.language || "Dummy"}</p>
+        <p>Most mistyped character: {props.mmc || "c"}</p>
+        <Line options={options} data={data} />
+    </div>
+  );
+}
+
+export default Stats;
+
