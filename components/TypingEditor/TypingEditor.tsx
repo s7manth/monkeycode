@@ -117,9 +117,8 @@ const TypingGameDemo = ({
     <div className="page_head">
       <button id="refresh-button">Refresh</button>
       {isBlur && (
-        <p className="blurred_click blue-color bold-text large-font">
-          Click <i className="fas fa-location-arrow"></i> or press any key to
-          focus (esc to reset)
+        <p className="blurred_click">
+          <i className="fas fa-mouse-pointer"></i> Click here or start typing to focus
         </p>
       )}
       {has_completed && <Stats />}

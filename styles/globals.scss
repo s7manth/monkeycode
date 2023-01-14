@@ -123,6 +123,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  font-family: 'Menlo';
+  color: #ffffff;
 }
 
 .typing-editor {
@@ -155,6 +157,7 @@ body {
     align-items: center;
     justify-content: center;
     color: $initCode;
+    font-family: 'Menlo';
     kbd {
       background-color: var(--font-color);
       color: var(--bg-color);
