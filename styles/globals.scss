@@ -43,7 +43,11 @@ body {
   background-color: transparent;
   padding: 0 10px;
   font-family: 'Inconsolata';
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.time-options {
+    padding: 10px 0;
 }
 
 .time-option:hover {
@@ -109,19 +113,31 @@ body {
 }
 
 .typing-editor {
-  //backdrop-filter: blur(20px);
-  font-size: 1.2rem;
-  background-color: $bgColor;
-  outline: none;
-  padding: 1rem 0.5rem;
-  max-height: 50vh;
-  width: 80vw;
-  overflow-y: auto;
+    transform: translate(10%, 0%);
+    font-size: 1.2rem;
+    background-color: $bgColor;
+    outline: none;
+    padding: 1rem 0.5rem;
+    height: 70vh;
+    width: 80vw;
+    overflow-y: auto;
+}
+
+.page_head {
+    display: flex;
+    flex-direction: column;
+    justify-contents: center;
+    align-contents: center;
+
 }
 
 .editor_title {
   color: $underLineColor;
-  font-family: Arial, Helvetica, sans-serif;
+  word-wrap: normal;
+  font-size: 1.65em;
+  //width: 50%;
+  text-align: center;
+  font-family: 'Inconsolata';
 }
 
 .curr-letter {

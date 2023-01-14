@@ -85,6 +85,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     }
     return (
         <div className="page_head">
+            {has_completed && <Stats />}
             {isBlur && (
                 <p className="blurred_click blue-color bold-text large-font">
                     Click{" "}
@@ -92,7 +93,6 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
                     {" "} or press any key to focus (esc to reset)
                 </p>
             )}
-            {has_completed && <Stats />}
             {!has_completed && (
                 <div
                     className={isBlur ? 'blur' : undefined}
