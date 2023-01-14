@@ -9,13 +9,37 @@
 
 .header-settings {
     display: flex;
-    width: 20%;
-    justify-content: end;
+    width: 30%;
+    justify-content: flex-end;
 }
 
 .header-logo {
     font-size: 1.5em;
     padding-left: 10px;
+}
+
+.time-option {
+    border: none;
+    background-color: transparent;
+    padding: 0 10px;
+}
+
+.time-option:hover {
+    cursor: pointer;
+    color: blue;
+
+}
+
+//.time-option:active {
+    //cursor: pointer;
+    //color: green;
+
+//}
+
+.active {
+    cursor: pointer;
+    color: green;
+
 }
 
 .header {
@@ -26,6 +50,12 @@
     //gap: 10px;
     //align-items: center;
     //padding: 10px;
+}
+
+.header-settings-label {
+    //display: flex;
+    //justify-content: space-between;
+    //justify-items: space-between;
 }
 
 .header-settings-dropdown {
