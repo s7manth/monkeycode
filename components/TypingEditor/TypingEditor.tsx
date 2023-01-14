@@ -8,7 +8,11 @@ interface TypingGameDemoProps {
   handleChange: any
 }
 
+//let isBlur = true
+
+
 const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
+    const [isBlur, setIsBlur] = useState(true);
   const {
     states: {
       charsState,
@@ -42,6 +46,9 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     return () => clearInterval(intervalId);
   }, [accuracyList]);
 
+  const handleClick = () => {
+      setIsBlur(false)}
+
   const handleKey = (key: any) => {
     if (key === 'Escape') {
       resetTyping()
@@ -65,9 +72,15 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     }
   }
 
+  //const blurred_text = {<p>Click on the text below and start typing<\p>}
+  //if
+
   return (
-    <div>
-      <p>Click on the text below and start typing (esc to reset)</p>
+  <div className="page_head">
+  {isBlur && <p className="blurred_click">Click on the text below and start typing (esc to reset)</p>}
+    <div className={isBlur ? "blur": undefined}
+        onClick={() => setIsBlur(false)}
+    >
       <div
         className="typing-editor"
         onKeyDown={(e) => {
@@ -104,6 +117,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
           Metrics:
           <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
         </div>
+      </div>
       </div>
 
       <pre>
