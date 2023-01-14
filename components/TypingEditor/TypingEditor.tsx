@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 import Stats from '../Stats/Stats'
