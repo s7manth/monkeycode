@@ -32,6 +32,7 @@ const TypingGameDemo = ({
     const element = document.getElementsByClassName('curr-letter')[0]
     element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   })
+  const [prevCorrect, setPrevCorrect] = useState(0)
   const [curCorrectTyped, setCurCorrectTyped] = useState(0)
   const [curErrorTyped, setCurErrorTyped] = useState(0)
   const [curCorrectTypedList, setCurCorrectTypedList] = useState<number[]>([])
@@ -57,8 +58,23 @@ const TypingGameDemo = ({
   const [accuracy, setAccuracy] = useState(0.0)
 
   useEffect(() => {
-    setAccuracy((correctChar * 100) / (correctChar + errorChar))
+    setAccuracy((curCorrectTyped * 100) / (curErrorTyped + curCorrectTyped))
   }, [correctChar, errorChar])
+
+  useEffect(() => {
+    console.log(phase, prevCorrect, correctChar)
+    if (phase != 0) {
+      setCurCorrectTyped((cur) => cur + correctChar - prevCorrect)
+    } else {
+      setCurCorrectTyped((cur) => cur)
+    }
+  }, [correctChar])
+
+  useEffect(() => {
+    if (phase != 0) {
+      setCurErrorTyped((cur) => cur + 1)
+    }
+  }, [errorChar])
 
   const [accuracyList, setAccuracyList] = useState<number[]>([])
 
@@ -102,6 +118,7 @@ const TypingGameDemo = ({
   }, [])
 
   const handleKey = (key: any) => {
+    setPrevCorrect(correctChar)
     if (key === 'Escape') {
       resetTyping()
     } else if (key === 'Backspace') {
@@ -180,6 +197,22 @@ const TypingGameDemo = ({
           </div>
         </div>
       )}
+      <pre>
+        {JSON.stringify(
+          {
+            startTime,
+            endTime,
+            length,
+            currIndex,
+            currChar,
+            correctChar,
+            errorChar,
+            phase,
+          },
+          null,
+          2,
+        )}
+      </pre>
     </div>
   )
 }
