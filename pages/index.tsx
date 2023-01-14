@@ -6,12 +6,11 @@ import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CODES, CPP_CODES } from '../data/demo'
 import styles from '../styles/Home.module.scss'
 
-
 const App = () => {
   const [curCodeIdx, setCurCodeIdx] = useState(0)
 
   const handleCompletion = () => {
-    setCurCodeIdx((idx) => (idx + 1) % 2)
+    setCurCodeIdx((idx) => (idx + 1) % CODES.length)
   }
 
   return (
@@ -33,7 +32,7 @@ const App = () => {
       <Countdown />
       <TypingGameDemo
         title={CODES[curCodeIdx].title}
-        code={CODES[curCodeIdx].code.trimStart()}
+        code={CODES[curCodeIdx].code.trim()}
         handleChange={handleCompletion}
       />
       <Footer />
