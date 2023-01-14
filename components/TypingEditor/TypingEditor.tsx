@@ -14,7 +14,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   const [isBlur, setIsBlur] = useState(true)
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
-    console.log(element)
+    // console.log(element)
     element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   })
 
@@ -46,7 +46,7 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
       setAccuracyList([...accuracyList, accuracy])
     }, 1000)
 
-    console.log(accuracyList)
+    // console.log(accuracyList)
 
     return () => clearInterval(intervalId)
   }, [accuracyList])
