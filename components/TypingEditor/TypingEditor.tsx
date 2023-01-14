@@ -42,6 +42,14 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
     const [accuracy, setAccuracy] = useState(0.0)
 
     useEffect(() => {
+        const refreshButton = document.getElementById("refresh-button");
+        if(refreshButton)
+            refreshButton.addEventListener("click", () => {
+              resetTyping();
+            });
+      }, []);
+
+    useEffect(() => {
         setAccuracy((correctChar * 100) / (correctChar + errorChar))
     }, [correctChar, errorChar])
 
@@ -84,7 +92,9 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         }
     }
     return (
+        
         <div className="page_head">
+            <button id="refresh-button">Refresh</button>
             {isBlur && (
                 <p className="blurred_click blue-color bold-text large-font">
                     Click{" "}
