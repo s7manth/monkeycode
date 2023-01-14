@@ -32,10 +32,12 @@ const Header: React.FC<Props> = ({
 
   return (
     <header className={`header ${currTheme}`}>
-      <div className="header-logo" style={{ color: 'white' }}>
-        <h2>
-          <i className="fas fa-keyboard color-icon"></i> HumanCode
-        </h2>
+      <div className={styles.logoparent} onClick={() => location.reload()}>
+        <div className="header-logo" style={{ color: 'white' }}>
+          <h2>
+            <i className="fas fa-keyboard color-icon"></i> HumanCode
+          </h2>
+        </div>
       </div>
       <div className={styles.header_settings} style={{ color: 'white' }}>
         <div className={styles.labels} style={{ color: 'white' }}>

@@ -50,7 +50,9 @@ const App = () => {
         setCurrLanguage={handleChangeLanguage}
         currTime={currTime}
         setCurrTime={handleChangeTime}
+        isBlur={isBlur}
       />
+      <div className={styles.left}>
       <Countdown
         initialTime={currTime}
         hasStarted={!isBlur}
@@ -77,6 +79,8 @@ const App = () => {
           errorCharsTyped={errorCharsTyped}
         />
       )}
+      </div>
+      {hasEnded && <Stats time={currTime} accuracy_list={accuracyData} />}
       <Footer />
     </div>
   )

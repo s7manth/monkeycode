@@ -148,11 +148,9 @@ const TypingGameDemo = ({
   }
   return (
     <div className="page_head">
-      <button id="refresh-button">Refresh</button>
       {isBlur && (
-        <p className="blurred_click blue-color bold-text large-font">
-          Click <i className="fas fa-location-arrow"></i> or press any key to
-          focus (esc to reset)
+        <p className="blurred_click" onClick={() => setIsBlur(false)}>
+          <i className="fas fa-mouse-pointer"></i> Click here to focus
         </p>
       )}
       {has_completed && <Stats />}
@@ -160,6 +158,7 @@ const TypingGameDemo = ({
         <div
           className={isBlur ? 'blur' : undefined}
           onClick={() => setIsBlur(false)}
+          style={{cursor: 'pointer'}}
         >
           <h1 className="editor_title">{title}</h1>
           <div
