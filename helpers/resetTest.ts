@@ -1,5 +1,5 @@
-import { setTimerId, setWordList, timerSet } from "store/actions";
-import { store } from "store/store";
+import { setTimerId, setWordList, timerSet } from "../store/actions";
+import { store } from "../store/store";
 
 export const resetTest = async () => {
     const { dispatch, getState } = store;

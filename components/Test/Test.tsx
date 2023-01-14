@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRef, setCaretRef } from "store/actions";
-import { State } from "store/reducer";
+import { setRef, setCaretRef } from "../../store/actions";
+import { State } from "../../store/reducer";
 import "stylesheets/Test.scss";
 
 export default function Test() {

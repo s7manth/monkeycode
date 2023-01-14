@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { State } from "store/reducer";
+import { State } from "../../store/reducer";
 import "stylesheets/Footer.scss";
 
 interface Contributor {

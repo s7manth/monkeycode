@@ -1,8 +1,8 @@
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
 import styles from "stylesheets/CommandPallet.module.scss";
-import { options, Options } from "./Header";
+import { options, Options } from "../Header/Header";
 import { useDispatch } from "react-redux";
-import { setTime, setTheme, setType } from "store/actions";
+import { setTime, setTheme, setType } from "../../store/actions";
 
 interface Props {
     setShowPallet: Function;

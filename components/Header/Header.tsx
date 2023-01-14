@@ -1,4 +1,4 @@
-import { resetTest } from "helpers/resetTest";
+import { resetTest } from "../../helpers/resetTest";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,8 +7,8 @@ import {
     setType,
     setWordList,
     timerSet,
-} from "store/actions";
-import { State } from "store/reducer";
+} from "../../store/actions";
+import { State } from "../../store/reducer";
 import "stylesheets/Header.scss";
 import "stylesheets/AnimatedTheme.scss";
 
