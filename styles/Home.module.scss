@@ -1,0 +1,11 @@
+@use "./mixins" as *;
+
+.description {
+  color: red;
+  .inside {
+    color: green;
+    @include lg {
+      font-size: 3rem;
+    }
+  }
+}
