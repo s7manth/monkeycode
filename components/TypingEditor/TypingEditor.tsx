@@ -1,7 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 import Stats from '../Stats/Stats';
+
+
 
 interface TypingGameDemoProps {
     title: string
@@ -12,6 +15,7 @@ interface TypingGameDemoProps {
 //let isBlur = true
 
 const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
+
     const [isBlur, setIsBlur] = useState(true)
     useEffect(() => {
         const element = document.getElementsByClassName('curr-letter')[0]
@@ -80,10 +84,6 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
             }
         }
     }
-
-    //const blurred_text = {<p>Click on the text below and start typing<\p>}
-    //if
-
     return (
         <div className="page_head">
             {isBlur && (
