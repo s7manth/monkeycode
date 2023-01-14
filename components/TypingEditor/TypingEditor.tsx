@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import useTypingGame from 'react-typing-game-hook'
 import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
@@ -102,7 +103,8 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         </p>
       )}
        {/* <i>className="fa fa-refresh transparent" aria-hidden="true"></div></i> */}
-      <button id="refresh-button">Refresh</button>
+       
+     <button id="refresh-button"> <i className="fa fa-refresh">Refresh</i></button>
       <div 
         className={isBlur ? 'blur' : undefined}
         onClick={() => setIsBlur(false)}
