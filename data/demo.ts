@@ -10,7 +10,7 @@ q.push(s);
 used[s] = true;
 p[s] = -1;
 while (!q.empty()) {
-int v = q.front();
+    int v = q.front();
     q.pop();
     for (int u : adj[v]) {
         if (!used[u]) {
@@ -21,3 +21,5 @@ int v = q.front();
         }
     }
 }`
+
+export const code_title = 'Implementing BFS'
