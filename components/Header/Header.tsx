@@ -22,10 +22,6 @@ const Header: React.FC<Props> = ({
   const time_options = [15, 30, 45, 60]
   const language_options = ['Python', 'CPP', 'Java', 'TS', 'Rust', 'Go']
 
-  const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrTheme(event.target.value)
-  }
-
   const handleLanguageChange = (newLanguage: string) => {
     setCurrLanguage(newLanguage)
   }

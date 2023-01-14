@@ -147,6 +147,9 @@ body {
 }
 
 .bottom-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   justify-content: center;
   position: relative;
