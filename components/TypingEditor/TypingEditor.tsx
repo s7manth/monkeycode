@@ -5,9 +5,10 @@ import { CORRECT_CHAR, INIT_CODE_COLOUR } from './constants'
 interface TypingGameDemoProps {
   title: string
   code: string
+  handleChange: any
 }
 
-const TypingGameDemo = ({ title, code }: TypingGameDemoProps) => {
+const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
   const {
     states: {
       charsState,
@@ -31,6 +32,9 @@ const TypingGameDemo = ({ title, code }: TypingGameDemoProps) => {
     } else if (key.length === 1) {
       insertTyping(key)
     } else if (key === 'Enter') {
+      if (phase === 2) {
+        handleChange()
+      }
       insertTyping(key)
       if (code[currIndex + 1] === '\n') {
         let newCurrIndex = currIndex + 1
