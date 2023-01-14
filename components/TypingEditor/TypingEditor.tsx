@@ -11,6 +11,8 @@ interface TypingGameDemoProps {
   setIsBlur: any
   hasEnded: boolean
   setAccuracyData: any
+  setCorrectCharsTyped: any
+  setErrorCharsTyped: any
 }
 
 //let isBlur = true
@@ -23,11 +25,17 @@ const TypingGameDemo = ({
   setIsBlur,
   hasEnded,
   setAccuracyData,
+  setCorrectCharsTyped,
+  setErrorCharsTyped,
 }: TypingGameDemoProps) => {
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
     element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   })
+  const [curCorrectTyped, setCurCorrectTyped] = useState(0)
+  const [curErrorTyped, setCurErrorTyped] = useState(0)
+  const [curCorrectTypedList, setCurCorrectTypedList] = useState<number[]>([])
+  const [curErrorTypedList, setCurErrorTypedlist] = useState<number[]>([])
 
   let has_completed = false
 
@@ -58,15 +66,21 @@ const TypingGameDemo = ({
     console.log(isBlur, hasEnded)
     if (!isBlur && !hasEnded) {
       const intervalId = setInterval(() => {
+        setCurCorrectTypedList([...curCorrectTypedList, curCorrectTyped])
+        setCurErrorTypedlist([...curErrorTypedList, curErrorTyped])
         if (!isNaN(accuracy)) {
-          return setAccuracyList([...accuracyList, accuracy])
+          setAccuracyList([...accuracyList, accuracy])
         } else {
-          return setAccuracyList([...accuracyList, 100])
+          setAccuracyList([...accuracyList, 100])
         }
       }, 1000)
 
       console.log(accuracyList)
+      console.log(curCorrectTypedList)
+      console.log(curErrorTypedList)
       setAccuracyData(accuracyList)
+      setCorrectCharsTyped(curCorrectTypedList)
+      setErrorCharsTyped(curErrorTypedList)
 
       return () => clearInterval(intervalId)
     }
@@ -112,6 +126,7 @@ const TypingGameDemo = ({
         insertTyping(' ')
       }
     }
+    console.log(correctChar)
   }
   return (
     <div className="page_head">
@@ -146,6 +161,7 @@ const TypingGameDemo = ({
                     : state === 1
                     ? CORRECT_CHAR
                     : 'red'
+
                 return (
                   <span
                     key={char + index}
@@ -164,27 +180,6 @@ const TypingGameDemo = ({
           </div>
         </div>
       )}
-
-      {/* <pre>
-        {JSON.stringify(
-          {
-            startTime,
-            endTime,
-            length,
-            currIndex,
-            currChar,
-            correctChar,
-            errorChar,
-            phase,
-          },
-          null,
-          2,
-        )}
-      </pre> */}
-      {/*<div>
-                Metrics:
-                <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
-            </div>*/}
     </div>
   )
 }

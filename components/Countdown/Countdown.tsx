@@ -1,3 +1,4 @@
+import { count } from 'console'
 import React, { useEffect, useState } from 'react'
 import styles from './Countdown.module.scss'
 
@@ -14,6 +15,10 @@ const Countdown = ({
 }: CountDownProps) => {
   const [countdown, setCountdown] = useState(initialTime)
   const [isCounting, setIsCounting] = useState(false)
+
+  useEffect(() => {
+    setCountdown(initialTime)
+  }, [initialTime])
 
   const startCountdown = () => {
     if (countdown === 0 || isCounting) return

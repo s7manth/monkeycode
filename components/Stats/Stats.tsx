@@ -44,7 +44,7 @@ function Stats(props: any) {
     labels,
     datasets: [
       {
-        label: 'Result',
+        label: 'Accuracy',
         data:
           props.accuracy_list ||
           Array(props.time || 30)
