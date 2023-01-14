@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StatsModuleCSS from './Stats.module.scss'
 import {
   Chart as ChartJS,
@@ -49,59 +49,77 @@ function Stats(props: any) {
       },
     },
   }
-  const labels = Array(props.time || 30)
-    .fill(0)
-    .map((_, idx) => 1 + idx)
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Accuracy',
-        data:
-          props.accuracy_list ||
-          Array(props.time || 30)
-            .fill(0)
-            .map((_, idx) => 1 + idx),
-        borderColor: 'rgb(219,185,65)',
-        backgroundColor: 'gb(219,185,65)',
-        yAxisID: 'y',
-      },
-      {
-        label: 'WPM',
-        data: props.correctCharsTyped.map(
-          (value: number, idx: number) =>
-            (value + props.errorCharsTyped[idx]) / 4,
-        ),
-        borderColor: '#36a2eb',
-        backgroundColor: '#a0d0f5',
-        yAxisID: 'y1',
-      },
-    ],
-  }
+
+
+
+  const [data, setData] = useState<any[]>()
+  const [labels, setLabels] = useState<number[]>()
+
+  useEffect(() => {
+    console.log(props)
+    if (!props || !props.correctCharsTyped) return
+    const _labels = Array(props.time || 30)
+      .fill(0)
+      .map((_, idx) => 1 + idx)
+
+    setLabels(_labels);
+    const _data = {
+      labels: _labels,
+      datasets: [
+        {
+          label: 'Accuracy',
+          data:
+            props.accuracy_list ||
+            Array(props.time || 30)
+              .fill(0)
+              .map((_, idx) => 1 + idx),
+          borderColor: 'rgb(219,185,65)',
+          backgroundColor: 'gb(219,185,65)',
+          yAxisID: 'y',
+        },
+        {
+          label: 'WPM',
+          data: props.correctCharsTyped.map(
+            (value: number, idx: number) =>
+              (value + props.errorCharsTyped[idx]) / 4,
+          ),
+          borderColor: '#36a2eb',
+          backgroundColor: '#a0d0f5',
+          yAxisID: 'y1',
+        },
+      ],
+    }
+    setData(_data);
+  }, [props])
+
 
   return (
     <div className={StatsModuleCSS.stats}>
-      <Line
-        options={options}
-        data={data}
-        className={StatsModuleCSS.linegraph}
-      />
-      <div className={StatsModuleCSS.other_stats}>
-        <div>
-          <p>WPM: {props.wpm || 0}</p>
-          <p>Accuracy: {props.accuracy || 0}</p>
-        </div>
-        <div>
-          <p>Time: {props.time || 0}</p>
-          <p>
-            Characters: {props.corrchar || 0} / {props.errchar || 0}
-          </p>
-        </div>
-        <div>
-          <p>Language: {props.language || 'Dummy'}</p>
-          <p>Most mistyped character: {props.mmc || 'c'}</p>
-        </div>
-      </div>
+      {data &&
+        <>
+          <Line
+            options={options}
+            data={data}
+            className={StatsModuleCSS.linegraph}
+          />
+          <div className={StatsModuleCSS.other_stats}>
+            <div>
+              <p>WPM: {props.wpm || 0}</p>
+              <p>Accuracy: {props.accuracy || 0}</p>
+            </div>
+            <div>
+              <p>Time: {props.time || 0}</p>
+              <p>
+                Characters: {props.corrchar || 0} / {props.errchar || 0}
+              </p>
+            </div>
+            <div>
+              <p>Language: {props.language || 'Dummy'}</p>
+              <p>Most mistyped character: {props.mmc || 'c'}</p>
+            </div>
+          </div>
+        </>
+      }
     </div>
   )
 }

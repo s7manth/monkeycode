@@ -50,7 +50,6 @@ const App = () => {
         setCurrLanguage={handleChangeLanguage}
         currTime={currTime}
         setCurrTime={handleChangeTime}
-        isBlur={isBlur}
       />
       <div className={styles.left}>
       <Countdown
