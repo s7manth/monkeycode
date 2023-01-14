@@ -75,20 +75,19 @@ const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
         }
         deleteTyping(false)
       }
+    } else if (key === 'Tab') {
+      for (var i = 0; i < 4; i++) {
+        insertTyping(' ')
+      }
     }
   }
-
-  //const blurred_text = {<p>Click on the text below and start typing<\p>}
-  //if
 
   return (
     <div className="page_head">
       {isBlur && (
         <p className="blurred_click blue-color bold-text large-font">
-          
-           Click{" "}
-           <i className="fas fa-location-arrow"></i>
-           {" "} or press any key to focus (esc to reset)
+          Click <i className="fas fa-location-arrow"></i> or press any key to
+          focus (esc to reset)
         </p>
       )}
       <div

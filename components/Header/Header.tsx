@@ -60,6 +60,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
         >
           {time_options.map((time) => (
             <span
+              key={time}
               className={`time-option ${selectedTime === time ? 'active' : ''}`}
               onClick={() => handleTimeChange(time)}
             >
