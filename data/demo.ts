@@ -1,5 +1,4 @@
-export const demo_cpp_code = `
-vector<vector<int>> adj;
+export const demo_cpp_code = `vector<vector<int>> adj;
 int n;
 int s;
 
@@ -44,41 +43,40 @@ export const CPP_CODES = [
   { title: 'Implementing DFS', code: DFS_CODE },
 ]
 
-
 export const CODES = [
-    { 
-        language: "CPP", 
-        title: "BFS", 
-        code: `
-        vector<vector<int>> adj;
-        int n;
-        int s;
-        
-        queue<int> q;
-        vector<bool> used(n);
-        vector<int> d(n), p(n);
-        
-        q.push(s);
-        used[s] = true;
-        p[s] = -1;
-        while (!q.empty()) {
-            int v = q.front();
-            q.pop();
-            for (int u : adj[v]) {
-                if (!used[u]) {
-                    used[u] = true;
-                    q.push(u);
-                    d[u] = d[v] + 1;
-                    p[u] = v;
-                }
-            }
+  {
+    language: 'CPP',
+    title: 'BFS',
+    code: `
+vector<vector<int>> adj;
+int n;
+int s;
+
+queue<int> q;
+vector<bool> used(n);
+vector<int> d(n), p(n);
+
+q.push(s);
+used[s] = true;
+p[s] = -1;
+while (!q.empty()) {
+    int v = q.front();
+    q.pop();
+    for (int u : adj[v]) {
+        if (!used[u]) {
+            used[u] = true;
+            q.push(u);
+            d[u] = d[v] + 1;
+            p[u] = v;
         }
-        `
-    }, 
-    {
-        language: "CPP", 
-        title: "DFS", 
-        code: `
+    }
+}
+`,
+  },
+  {
+    language: 'CPP',
+    title: 'DFS',
+    code: `
         vector<vector<int>> adj;
         int n; // number of vertices
         
@@ -91,12 +89,12 @@ export const CODES = [
                     dfs(u);
             }
         }
-        `
-    }, 
-    {
-        language: "CPP", 
-        title: "Dijkstra's Algorithm", 
-        code: `
+        `,
+  },
+  {
+    language: 'CPP',
+    title: "Dijkstra's Algorithm",
+    code: `
         #include <iostream>
         #include <vector>
         #include <queue>
@@ -124,12 +122,12 @@ export const CODES = [
                 }
             }
         }
-        `
-    }, 
-    {
-        language: "CPP", 
-        title: "Dijkstra's Algorithm", 
-        code: `
+        `,
+  },
+  {
+    language: 'CPP',
+    title: "Dijkstra's Algorithm",
+    code: `
         #include <iostream>
         #include <string>
 
@@ -147,12 +145,12 @@ export const CODES = [
             }
             return result;
         }
-        `
-    }, 
-    {
-        language: "Java", 
-        title: "DFS", 
-        code: `
+        `,
+  },
+  {
+    language: 'Java',
+    title: 'DFS',
+    code: `
         import java.util.List;
         import java.util.ArrayList;
 
@@ -180,12 +178,12 @@ export const CODES = [
                 dfs(0);
             }
         }
-        `
-    }, 
-    {
-        language: "Python", 
-        title: "DFS", 
-        code: `
+        `,
+  },
+  {
+    language: 'Python',
+    title: 'DFS',
+    code: `
         def dfs(graph, start, visited):
             visited[start] = True
             for neighbour in graph[start]:
@@ -195,12 +193,12 @@ export const CODES = [
         graph = [[1, 2], [0, 3], [0, 3], [1, 2]]
         visited = [False] * len(graph)
         dfs(graph, 0, visited)
-        `
-    }, 
-    {
-        language: "Go", 
-        title: "DFS", 
-        code: `
+        `,
+  },
+  {
+    language: 'Go',
+    title: 'DFS',
+    code: `
         package main
 
         var graph [][]int
@@ -220,12 +218,12 @@ export const CODES = [
             visited = make([]bool, len(graph))
             dfs(0)
         }
-        `
-    }, 
-    {
-        language: "TS", 
-        title: "DFS", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title: 'DFS',
+    code: `
         const graph = [[1, 2], [0, 3], [0, 3], [1, 2]];
         const visited = new Array(graph.length).fill(false);
 
@@ -239,12 +237,12 @@ export const CODES = [
         }
 
         dfs(0);
-        `
-    }, 
-    {
-        language: "Rust", 
-        title: "DFS", 
-        code: `
+        `,
+  },
+  {
+    language: 'Rust',
+    title: 'DFS',
+    code: `
         use std::vec::Vec;
 
         struct Graph {
@@ -261,12 +259,12 @@ export const CODES = [
                 }
             }
         }
-        `
-    },
-    {
-        language: "Rust", 
-        title: "Generating a random number between 1 and 100", 
-        code: `
+        `,
+  },
+  {
+    language: 'Rust',
+    title: 'Generating a random number between 1 and 100',
+    code: `
         use rand::Rng;
 
         fn main() {
@@ -274,12 +272,12 @@ export const CODES = [
             let random_number = rng.gen_range(1, 101);
             println!("Random number: {}", random_number);
         }
-        `
-    }, 
-    {
-        language: "Rust", 
-        title: "Implementing a simple struct with getters and setters", 
-        code: `
+        `,
+  },
+  {
+    language: 'Rust',
+    title: 'Implementing a simple struct with getters and setters',
+    code: `
         struct MyStruct {
             x: i32,
             y: i32,
@@ -313,12 +311,13 @@ export const CODES = [
             my_struct.set_y(4);
             println!("x: {}, y: {}", my_struct.get_x(), my_struct.get_y());
         }        
-        `
-    }, 
-    {
-        language: "Rust", 
-        title: "Implementing a simple function to calculate the factorial of a number", 
-        code: `
+        `,
+  },
+  {
+    language: 'Rust',
+    title:
+      'Implementing a simple function to calculate the factorial of a number',
+    code: `
         fn factorial(n: u64) -> u64 {
             if n == 0 {
                 return 1;
@@ -331,12 +330,12 @@ export const CODES = [
             println!("{}! = {}", n, factorial(n));
         }
         
-        `
-    },
-    {
-        language: "Rust", 
-        title: "Implementing a simple thread pool", 
-        code: `
+        `,
+  },
+  {
+    language: 'Rust',
+    title: 'Implementing a simple thread pool',
+    code: `
         use std::sync::mpsc;
         use std::thread;
 
@@ -364,12 +363,13 @@ export const CODES = [
         fn main() {
             thread_pool(3);
         }
-        `
-    },
-    {
-        language: "TS", 
-        title: "A program that uses a hash map to count the occurrences of words in a string", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title:
+      'A program that uses a hash map to count the occurrences of words in a string',
+    code: `
         use std::collections::HashMap;
 
         fn main() {
@@ -386,12 +386,13 @@ export const CODES = [
             }
         }
 
-        `
-    },
-    {
-        language: "TS", 
-        title: "A class that represents a person, with properties for their name and age, and a method that greets them", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title:
+      'A class that represents a person, with properties for their name and age, and a method that greets them',
+    code: `
         class Person {
             private name: string;
             private age: number;
@@ -408,12 +409,13 @@ export const CODES = [
             
         let person = new Person("John", 30);
         person.greet();
-        `
-    },
-    {
-        language: "TS", 
-        title: "A function that takes an array of numbers and returns the average of all even numbers in the array", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title:
+      'A function that takes an array of numbers and returns the average of all even numbers in the array',
+    code: `
         function averageOfEvenNumbers(numbers: number[]): number {
             let evenNumbers = numbers.filter(n => n % 2 === 0);
             let sum = evenNumbers.reduce((a, b) => a + b, 0);
@@ -422,12 +424,13 @@ export const CODES = [
         
         let numbers = [1, 2, 3, 4, 5, 6];
         console.log(averageOfEvenNumbers(numbers));        
-        `
-    },
-    {
-        language: "TS", 
-        title: "A program that uses a Map to count the occurrences of characters in a string", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title:
+      'A program that uses a Map to count the occurrences of characters in a string',
+    code: `
         let text = "this is a test of the character counting system";
         let characterCounts = new Map<string, number>();
 
@@ -440,12 +443,13 @@ export const CODES = [
         for (let [char, count] of characterCounts) {
             console.log(\`'\${char}': \${count}\`);
         }
-        `
-    }, 
-    {
-        language: "TS", 
-        title: "A decorator that measures the execution time of a function and logs it to the console", 
-        code: `
+        `,
+  },
+  {
+    language: 'TS',
+    title:
+      'A decorator that measures the execution time of a function and logs it to the console',
+    code: `
         function measureExecutionTime(target: any, key: string, descriptor: PropertyDescriptor) {
             let originalMethod = descriptor.value;
         
@@ -466,23 +470,24 @@ export const CODES = [
                 // some time-consuming code here
             }
         }  
-        `
-    },
-    {
-        language: "Java", 
-        title: "A simple program that prints \"Hello, World!\" to the console", 
-        code: `
+        `,
+  },
+  {
+    language: 'Java',
+    title: 'A simple program that prints "Hello, World!" to the console',
+    code: `
         public class HelloWorld {
             public static void main(String[] args) {
                 System.out.println("Hello, World!");
             }
         }        
-        `
-    }, 
-    {
-        language: "Java", 
-        title: "A class that represents a bank account, with properties for the account number and balance, and methods for withdrawing and depositing money", 
-        code: `
+        `,
+  },
+  {
+    language: 'Java',
+    title:
+      'A class that represents a bank account, with properties for the account number and balance, and methods for withdrawing and depositing money',
+    code: `
         public class BankAccount {
             private int accountNumber;
             private double balance;
@@ -509,12 +514,13 @@ export const CODES = [
             }
         }
                 
-        `
-    },
-    {
-        language: "Java", 
-        title: "A program that uses an ArrayList to store a list of names and prints them to the console", 
-        code: `
+        `,
+  },
+  {
+    language: 'Java',
+    title:
+      'A program that uses an ArrayList to store a list of names and prints them to the console',
+    code: `
         import java.util.ArrayList;
 
         public class NameList {
@@ -529,12 +535,13 @@ export const CODES = [
                 }
             }
         }       
-        `
-    },
-    {
-        language: "Java", 
-        title: "A program that uses a HashMap to store a dictionary of words and their definitions, and allows the user to look up the definition of a word", 
-        code: `
+        `,
+  },
+  {
+    language: 'Java',
+    title:
+      'A program that uses a HashMap to store a dictionary of words and their definitions, and allows the user to look up the definition of a word',
+    code: `
         import java.util.HashMap;
         import java.util.Scanner;
 
@@ -556,12 +563,12 @@ export const CODES = [
                 }
             }
         }     
-        `
-    },
-    {
-        language: "Python", 
-        title: "",
-        code: `
+        `,
+  },
+  {
+    language: 'Python',
+    title: '',
+    code: `
         def factorial(n):
             if n == 0:
                 return 1
@@ -569,12 +576,12 @@ export const CODES = [
                 return n * factorial(n-1)
 
         print(factorial(5))
-        `
-    },
-    {
-        language: "Python", 
-        title: "",
-        code: `
+        `,
+  },
+  {
+    language: 'Python',
+    title: '',
+    code: `
         class Rectangle:
             def __init__(self, width, height):
                 self.width = width
@@ -589,12 +596,13 @@ export const CODES = [
         rect = Rectangle(5, 10)
         print(rect.area())
         print(rect.perimeter())
-        `
-    },
-    {
-        language: "Python", 
-        title: "A program that uses a neural network to predict the price of a house based on a set of input features",
-        code: `
+        `,
+  },
+  {
+    language: 'Python',
+    title:
+      'A program that uses a neural network to predict the price of a house based on a set of input features',
+    code: `
         import tensorflow as tf
         from sklearn.datasets import load_boston
         from sklearn.model_selection import train_test_split
@@ -625,12 +633,13 @@ export const CODES = [
         # Evaluate the model
         test_loss = model.evaluate(X_test, y_test)
         print(f"Test Loss: {test_loss}")
-        `
-    },
-    {
-        language: "Python", 
-        title: "A program that uses a web scraping library to extract information from a website",
-        code: `
+        `,
+  },
+  {
+    language: 'Python',
+    title:
+      'A program that uses a web scraping library to extract information from a website',
+    code: `
         import requests
         from bs4 import BeautifulSoup
 
@@ -646,8 +655,6 @@ export const CODES = [
         links = soup.find_all('a')
         for link in links:
             print(link.get('href'))
-        `
-    }
+        `,
+  },
 ]
-
-
