@@ -1,11 +1,8 @@
-@use "./mixins" as *;
+.typing_test {
+  font-size: 3rem;
+  outline: none;
+}
 
-.description {
-  color: red;
-  .inside {
-    color: green;
-    @include lg {
-      font-size: 3rem;
-    }
-  }
+.curr_letter {
+  text-decoration: underline;
 }
