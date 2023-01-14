@@ -15,7 +15,6 @@ interface TypingGameDemoProps {
 //let isBlur = true
 
 const TypingGameDemo = ({ title, code, handleChange }: TypingGameDemoProps) => {
-
     const [isBlur, setIsBlur] = useState(true)
     useEffect(() => {
         const element = document.getElementsByClassName('curr-letter')[0]
