@@ -39,11 +39,12 @@ body {
   border: none;
   background-color: transparent;
   padding: 0 10px;
+  font-family: 'Inconsolata';font-size: 18px;
 }
 
 .time-option:hover {
   cursor: pointer;
-  color: blue;
+  color: grey;
 }
 
 //.time-option:active {
@@ -54,7 +55,7 @@ body {
 
 .active {
   cursor: pointer;
-  color: green;
+  color: $underLineColor
 }
 
 .header {
