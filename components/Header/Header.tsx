@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 interface Props {
   currTheme: string;
@@ -51,7 +51,7 @@ const Header: React.FC<Props> = ({ currTheme, currTime, setCurrLanguage, setCurr
           </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

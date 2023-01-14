@@ -5,6 +5,7 @@ import Header from '../components/Header/Header'
 import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CODES } from '../data/demo'
 import styles from '../styles/Home.module.scss'
+import Stats from '../components/Stats/Stats';
 
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
   }, [currLanguage]);
 
   const handleCompletion = () => {
-    setCurCodeIdx((idx) => (idx + 1) % 2)
+    setCurCodeIdx((idx) => (idx + 1) % CODES.length)
   }
 
   const handleChangeLanguage = (language: string) => {

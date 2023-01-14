@@ -1,0 +1,30 @@
+.stats {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    padding: 20px;
+}
+
+//.linegraph {
+    //width: 300px;
+    //height: 300px;
+//}
+.other_stats > p {
+}
+
+.other_stats {
+    //font-family 
+    display: flex;
+    font-size: 1.2rem;
+    height: 20 vw;
+    padding: 20px;
+    margin-botton: 50px;
+    //margin: 20px;
+    column-gap: 20px;
+    //row-gap: 40px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}

@@ -13,7 +13,9 @@ body {
 
 .header-settings {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .blue-color {
@@ -32,17 +34,21 @@ body {
   font-size: 1.5em;
   display: flex;
   padding-right: 25vw;
+  font-family: 'Inconsolata';
+  font-size: 22px;
 }
 
 .time-option {
   border: none;
   background-color: transparent;
   padding: 0 10px;
+  font-family: 'Inconsolata';
+  font-size: 18px;
 }
 
 .time-option:hover {
   cursor: pointer;
-  color: blue;
+  color: grey;
 }
 
 //.time-option:active {
@@ -53,7 +59,7 @@ body {
 
 .active {
   cursor: pointer;
-  color: green;
+  color: $underLineColor;
 }
 
 .header {
@@ -64,6 +70,9 @@ body {
   //gap: 10px;
   //align-items: center;
   //padding: 10px;
+}
+.color-icon {
+  color: $underLineColor
 }
 
 .header-settings-label {
