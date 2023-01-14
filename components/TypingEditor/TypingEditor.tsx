@@ -158,7 +158,7 @@ const TypingGameDemo = ({
         <div
           className={isBlur ? 'blur' : undefined}
           onClick={() => setIsBlur(false)}
-          style={{cursor: 'pointer'}}
+          style={{ cursor: 'pointer' }}
         >
           <h1 className="editor_title">{title}</h1>
           <div
@@ -197,22 +197,6 @@ const TypingGameDemo = ({
           </div>
         </div>
       )}
-      <pre>
-        {JSON.stringify(
-          {
-            startTime,
-            endTime,
-            length,
-            currIndex,
-            currChar,
-            correctChar,
-            errorChar,
-            phase,
-          },
-          null,
-          2,
-        )}
-      </pre>
     </div>
   )
 }

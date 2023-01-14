@@ -56,6 +56,10 @@ function Stats(props: any) {
 
   const [data, setData] = useState<any[]>()
   const [labels, setLabels] = useState<number[]>()
+  const [totalCorrect, setTotalCorrect] = useState<number>(0)
+  const [totalError, setTotalError] = useState<number>(0)
+  const [averageWPM, setAverageWPM] = useState<number>(0)
+  const [averageAccuracy, setAverageAccuracy] = useState<number>(0)
 
   useEffect(() => {
     console.log(props)
@@ -64,6 +68,19 @@ function Stats(props: any) {
       .fill(0)
       .map((_, idx) => 1 + idx)
 
+    let _totalCorrect: number = props.correctCharsTyped[props.time - 1]
+    let _totalError: number = props.errorCharsTyped[props.time - 1]
+
+    setTotalCorrect(_totalCorrect)
+    setTotalError(_totalError)
+    setAverageWPM(
+      ((_totalCorrect + _totalError) *
+        2 *
+        props.accuracy_list[props.time - 1]) /
+        100 /
+        props.time,
+    )
+    setAverageAccuracy(props.accuracy_list[props.time - 1])
     setLabels(_labels)
     const _data = {
       labels: _labels,
@@ -83,7 +100,11 @@ function Stats(props: any) {
           label: 'WPM',
           data: props.correctCharsTyped.map(
             (value: number, idx: number) =>
-              (value + props.errorCharsTyped[idx]) * 2/ (idx + 1),
+              ((value + props.errorCharsTyped[idx]) *
+                2 *
+                props.accuracy_list[idx]) /
+              100 /
+              (idx + 1),
           ),
           borderColor: '#36a2eb',
           backgroundColor: '#a0d0f5',
@@ -105,18 +126,38 @@ function Stats(props: any) {
           />
           <div className={StatsModuleCSS.other_stats}>
             <div>
-              <p>WPM: {props.wpm || 0}</p>
-              <p>Accuracy: {props.accuracy || 0}</p>
-            </div>
-            <div>
-              <p>Time: {props.time || 0}</p>
               <p>
-                Characters: {props.corrchar || 0} / {props.errchar || 0}
+                WPM:{' '}
+                <span className={StatsModuleCSS.value}>
+                  {averageWPM.toFixed(2) || 0}
+                </span>
+              </p>
+              <p>
+                Accuracy:{' '}
+                <span className={StatsModuleCSS.value}>
+                  {averageAccuracy.toFixed(2) || 0}
+                </span>
               </p>
             </div>
             <div>
-              <p>Language: {props.language || 'Dummy'}</p>
-              <p>Most mistyped character: {props.mmc || 'c'}</p>
+              <p>
+                Time:{' '}
+                <span className={StatsModuleCSS.value}>{props.time || 0}</span>
+              </p>
+              <p>
+                Characters:{' '}
+                <span className={StatsModuleCSS.value}>
+                  {totalCorrect} / {totalError}
+                </span>
+              </p>
+            </div>
+            <div>
+              <p>
+                Language:{' '}
+                <span className={StatsModuleCSS.value}>
+                  {props.language || 'Dummy'}
+                </span>
+              </p>
             </div>
           </div>
         </>

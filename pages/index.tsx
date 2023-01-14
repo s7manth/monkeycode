@@ -52,34 +52,36 @@ const App = () => {
         setCurrTime={handleChangeTime}
       />
       <div className={styles.left}>
-      <Countdown
-        initialTime={currTime}
-        hasStarted={!isBlur}
-        setHasEnded={setHasEnded}
-      />
-      {codes && !hasEnded && (
-        <TypingGameDemo
-          title={codes[curCodeIdx].title}
-          code={codes[curCodeIdx].code.trim()}
-          handleChange={handleCompletion}
-          isBlur={isBlur}
-          setIsBlur={setIsBlur}
-          hasEnded={hasEnded}
-          setAccuracyData={setAccuracyData}
-          setCorrectCharsTyped={setCorrectCharsTyped}
-          setErrorCharsTyped={setErrorCharsTyped}
-        />
-      )}
-      {hasEnded && (
-        <Stats
-          time={currTime}
-          accuracy_list={accuracyData}
-          correctCharsTyped={correctCharsTyped}
-          errorCharsTyped={errorCharsTyped}
-        />
-      )}
+        {!hasEnded && (
+          <Countdown
+            initialTime={currTime}
+            hasStarted={!isBlur}
+            setHasEnded={setHasEnded}
+          />
+        )}
+        {codes && !hasEnded && (
+          <TypingGameDemo
+            title={codes[curCodeIdx].title}
+            code={codes[curCodeIdx].code.trim()}
+            handleChange={handleCompletion}
+            isBlur={isBlur}
+            setIsBlur={setIsBlur}
+            hasEnded={hasEnded}
+            setAccuracyData={setAccuracyData}
+            setCorrectCharsTyped={setCorrectCharsTyped}
+            setErrorCharsTyped={setErrorCharsTyped}
+          />
+        )}
+        {hasEnded && (
+          <Stats
+            time={currTime}
+            accuracy_list={accuracyData}
+            correctCharsTyped={correctCharsTyped}
+            errorCharsTyped={errorCharsTyped}
+            language={currLanguage}
+          />
+        )}
       </div>
-      {hasEnded && <Stats time={currTime} accuracy_list={accuracyData} />}
       <Footer />
     </div>
   )

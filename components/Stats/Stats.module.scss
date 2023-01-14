@@ -1,30 +1,35 @@
+@use "../../styles/variables" as *;
 
 .stats {
-    display: flex;
-    flex-direction: column;
-    width: 70vw;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  padding: 20px;
 }
 
 //.linegraph {
-    //width: 300px;
-    //height: 300px;
+//width: 300px;
+//height: 300px;
 //}
 .other_stats > p {
 }
 
 .other_stats {
-    //font-family 
-    display: flex;
-    font-size: 1.2rem;
-    height: 20 vw;
-    padding: 20px;
-    //margin: 20px;
-    column-gap: 20px;
-    //row-gap: 40px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: space-around;
-    align-items: center;
+  color: $initCode;
+  font-family: 'Menlo';
+  display: flex;
+  font-size: 1.2rem;
+  height: 20 vw;
+  padding: 20px;
+  //margin: 20px;
+  column-gap: 20px;
+  //row-gap: 40px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+  .value {
+    color: #36a2eb;
+  }
 }
