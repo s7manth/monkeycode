@@ -5,6 +5,8 @@ import Header from '../components/Header/Header'
 import TypingGameDemo from '../components/TypingEditor/TypingEditor'
 import { CODES, CPP_CODES } from '../data/demo'
 import styles from '../styles/Home.module.scss'
+import Stats from '../components/Stats/Stats';
+
 
 const App = () => {
   const [curCodeIdx, setCurCodeIdx] = useState(0)
