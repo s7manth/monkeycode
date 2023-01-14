@@ -36,6 +36,18 @@ function Stats(props: any) {
         text: 'Results',
       },
     },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+      },
+    },
   }
   const labels = Array(props.time || 30)
     .fill(0)
@@ -44,7 +56,7 @@ function Stats(props: any) {
     labels,
     datasets: [
       {
-        label: 'Result',
+        label: 'Accuracy',
         data:
           props.accuracy_list ||
           Array(props.time || 30)
@@ -52,6 +64,17 @@ function Stats(props: any) {
             .map((_, idx) => 1 + idx),
         borderColor: 'rgb(219,185,65)',
         backgroundColor: 'gb(219,185,65)',
+        yAxisID: 'y',
+      },
+      {
+        label: 'WPM',
+        data: props.correctCharsTyped.map(
+          (value: number, idx: number) =>
+            (value + props.errorCharsTyped[idx]) / 4,
+        ),
+        borderColor: '#36a2eb',
+        backgroundColor: '#a0d0f5',
+        yAxisID: 'y1',
       },
     ],
   }

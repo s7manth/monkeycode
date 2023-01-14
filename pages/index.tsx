@@ -16,6 +16,8 @@ const App = () => {
   const [isBlur, setIsBlur] = useState(true)
   const [hasEnded, setHasEnded] = useState(false)
   const [accuracyData, setAccuracyData] = useState<number[]>([])
+  const [correctCharsTyped, setCorrectCharsTyped] = useState<number[]>([0])
+  const [errorCharsTyped, setErrorCharsTyped] = useState<number[]>([0])
 
   useEffect(() => {
     let filteredCodes = CODES.filter((obj) => obj.language == currLanguage)
@@ -65,6 +67,16 @@ const App = () => {
           setIsBlur={setIsBlur}
           hasEnded={hasEnded}
           setAccuracyData={setAccuracyData}
+          setCorrectCharsTyped={setCorrectCharsTyped}
+          setErrorCharsTyped={setErrorCharsTyped}
+        />
+      )}
+      {hasEnded && (
+        <Stats
+          time={currTime}
+          accuracy_list={accuracyData}
+          correctCharsTyped={correctCharsTyped}
+          errorCharsTyped={errorCharsTyped}
         />
       )}
       </div>

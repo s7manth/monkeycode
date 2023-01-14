@@ -12,6 +12,8 @@ interface TypingGameDemoProps {
   setIsBlur: any
   hasEnded: boolean
   setAccuracyData: any
+  setCorrectCharsTyped: any
+  setErrorCharsTyped: any
 }
 
 //let isBlur = true
@@ -24,11 +26,18 @@ const TypingGameDemo = ({
   setIsBlur,
   hasEnded,
   setAccuracyData,
+  setCorrectCharsTyped,
+  setErrorCharsTyped,
 }: TypingGameDemoProps) => {
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
     element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   })
+  const [prevCorrect, setPrevCorrect] = useState(0)
+  const [curCorrectTyped, setCurCorrectTyped] = useState(0)
+  const [curErrorTyped, setCurErrorTyped] = useState(0)
+  const [curCorrectTypedList, setCurCorrectTypedList] = useState<number[]>([])
+  const [curErrorTypedList, setCurErrorTypedlist] = useState<number[]>([])
 
   let has_completed = false
 
@@ -50,8 +59,23 @@ const TypingGameDemo = ({
   const [accuracy, setAccuracy] = useState(0.0)
 
   useEffect(() => {
-    setAccuracy((correctChar * 100) / (correctChar + errorChar))
+    setAccuracy((curCorrectTyped * 100) / (curErrorTyped + curCorrectTyped))
   }, [correctChar, errorChar])
+
+  useEffect(() => {
+    console.log(phase, prevCorrect, correctChar)
+    if (phase != 0) {
+      setCurCorrectTyped((cur) => cur + correctChar - prevCorrect)
+    } else {
+      setCurCorrectTyped((cur) => cur)
+    }
+  }, [correctChar])
+
+  useEffect(() => {
+    if (phase != 0) {
+      setCurErrorTyped((cur) => cur + 1)
+    }
+  }, [errorChar])
 
   const [accuracyList, setAccuracyList] = useState<number[]>([])
 
@@ -59,15 +83,21 @@ const TypingGameDemo = ({
     console.log(isBlur, hasEnded)
     if (!isBlur && !hasEnded) {
       const intervalId = setInterval(() => {
+        setCurCorrectTypedList([...curCorrectTypedList, curCorrectTyped])
+        setCurErrorTypedlist([...curErrorTypedList, curErrorTyped])
         if (!isNaN(accuracy)) {
-          return setAccuracyList([...accuracyList, accuracy])
+          setAccuracyList([...accuracyList, accuracy])
         } else {
-          return setAccuracyList([...accuracyList, 100])
+          setAccuracyList([...accuracyList, 100])
         }
       }, 1000)
 
       console.log(accuracyList)
+      console.log(curCorrectTypedList)
+      console.log(curErrorTypedList)
       setAccuracyData(accuracyList)
+      setCorrectCharsTyped(curCorrectTypedList)
+      setErrorCharsTyped(curErrorTypedList)
 
       return () => clearInterval(intervalId)
     }
@@ -89,6 +119,7 @@ const TypingGameDemo = ({
   }, [])
 
   const handleKey = (key: any) => {
+    setPrevCorrect(correctChar)
     if (key === 'Escape') {
       resetTyping()
     } else if (key === 'Backspace') {
@@ -113,6 +144,7 @@ const TypingGameDemo = ({
         insertTyping(' ')
       }
     }
+    console.log(correctChar)
   }
   return (
     <div className="page_head">
@@ -146,6 +178,7 @@ const TypingGameDemo = ({
                     : state === 1
                     ? CORRECT_CHAR
                     : 'red'
+
                 return (
                   <span
                     key={char + index}
@@ -164,8 +197,7 @@ const TypingGameDemo = ({
           </div>
         </div>
       )}
-
-      {/* <pre>
+      <pre>
         {JSON.stringify(
           {
             startTime,
@@ -180,11 +212,7 @@ const TypingGameDemo = ({
           null,
           2,
         )}
-      </pre> */}
-      {/*<div>
-                Metrics:
-                <span>Accuracy: {accuracy ? accuracy.toFixed(2) : 0.0} %</span>
-            </div>*/}
+      </pre>
     </div>
   )
 }
