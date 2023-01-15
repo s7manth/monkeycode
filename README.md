@@ -19,12 +19,14 @@ git clone https://github.com/s7manth/monkeycode
 
 2. Install dependencies
 
-```npm install
+```bash
+npm install
 ```
 
 3. Run the development server
 
-```npm run dev
+```bash
+npm run dev
 ```
 
 The development server will run on port 3000, if not in use. 
