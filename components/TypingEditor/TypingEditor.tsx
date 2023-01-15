@@ -14,6 +14,8 @@ interface TypingGameDemoProps {
   setAccuracyData: any
   setCorrectCharsTyped: any
   setErrorCharsTyped: any
+  setHasEnded: any
+  zenMode: boolean
 }
 
 //let isBlur = true
@@ -28,6 +30,8 @@ const TypingGameDemo = ({
   setAccuracyData,
   setCorrectCharsTyped,
   setErrorCharsTyped,
+  setHasEnded,
+  zenMode
 }: TypingGameDemoProps) => {
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
@@ -57,6 +61,11 @@ const TypingGameDemo = ({
   } = useTypingGame(code, { skipCurrentWordOnSpace: false })
 
   const [accuracy, setAccuracy] = useState(0.0)
+  const [zm, setZm] = useState(zenMode);
+
+  useEffect(() => {
+    setZm(zenMode);
+  }, [zenMode]);
 
   useEffect(() => {
     setAccuracy((curCorrectTyped * 100) / (curErrorTyped + curCorrectTyped))
@@ -150,7 +159,7 @@ const TypingGameDemo = ({
     <div className="page_head">
       {isBlur && (
         <p className="blurred_click" onClick={() => setIsBlur(false)}>
-          <i className="fas fa-mouse-pointer"></i> Click here to focus
+          <i className="fas fa-mouse-pointer"></i> Click anywhere to focus
         </p>
       )}
       {has_completed && <Stats />}
@@ -164,7 +173,12 @@ const TypingGameDemo = ({
           <div
             className="typing-editor"
             onKeyDown={(e) => {
-              handleKey(e.key)
+              console.log(e, "lalalal", zm);
+              if (e.shiftKey && e.key === 'Enter' && zm) {
+                setHasEnded(true);
+              } else {
+                handleKey(e.key)
+              }
               e.preventDefault()
             }}
             tabIndex={0}

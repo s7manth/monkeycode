@@ -6,22 +6,25 @@ interface CountDownProps {
   initialTime: number
   hasStarted: boolean
   setHasEnded: any
+  zenMode: boolean
 }
 
 const Countdown = ({
   initialTime,
   hasStarted,
   setHasEnded,
+  zenMode
 }: CountDownProps) => {
   const [countdown, setCountdown] = useState(initialTime)
   const [isCounting, setIsCounting] = useState(false)
+  const [zm, setZm] = useState(zenMode);
 
   useEffect(() => {
     setCountdown(initialTime)
   }, [initialTime])
 
   const startCountdown = () => {
-    if (countdown === 0 || isCounting) return
+    if (countdown === 0 || isCounting || zm) return
     setIsCounting(true)
     setTimeout(() => {
       setCountdown((c) => {
@@ -36,6 +39,10 @@ const Countdown = ({
     }, 1000)
   }
 
+  useEffect(() => {
+    setZm(zenMode);
+  }, [zenMode]);
+
   const stopCountdown = () => {
     setIsCounting(false)
   }
@@ -47,7 +54,7 @@ const Countdown = ({
   }, [hasStarted])
   return (
     <div className={styles.container}>
-      <div className="countdown_timer">{countdown}</div>
+      <div className="countdown_timer" style={{ color: `${zm ? "#333437" : ""}` }}>{countdown}</div>
     </div>
   )
 }

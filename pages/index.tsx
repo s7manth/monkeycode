@@ -19,6 +19,8 @@ const App = () => {
   const [correctCharsTyped, setCorrectCharsTyped] = useState<number[]>([0])
   const [errorCharsTyped, setErrorCharsTyped] = useState<number[]>([0])
 
+  const [zenMode, setZenMode] = useState<boolean>(false);
+
   useEffect(() => {
     let filteredCodes = CODES.filter((obj) => obj.language == currLanguage)
     filteredCodes.sort(() => Math.random() - 0.5)
@@ -50,6 +52,8 @@ const App = () => {
         setCurrLanguage={handleChangeLanguage}
         currTime={currTime}
         setCurrTime={handleChangeTime}
+        zenMode={zenMode}
+        setZenMode={setZenMode}
       />
       <div className={styles.left}>
         {!hasEnded && (
@@ -57,6 +61,7 @@ const App = () => {
             initialTime={currTime}
             hasStarted={!isBlur}
             setHasEnded={setHasEnded}
+            zenMode={zenMode}
           />
         )}
         {codes && !hasEnded && (
@@ -70,11 +75,13 @@ const App = () => {
             setAccuracyData={setAccuracyData}
             setCorrectCharsTyped={setCorrectCharsTyped}
             setErrorCharsTyped={setErrorCharsTyped}
+            setHasEnded={setHasEnded}
+            zenMode={zenMode}
           />
         )}
         {hasEnded && (
           <Stats
-            time={currTime}
+            time={zenMode ? accuracyData.length : currTime}
             accuracy_list={accuracyData}
             correctCharsTyped={correctCharsTyped}
             errorCharsTyped={errorCharsTyped}
