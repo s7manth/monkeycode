@@ -8,6 +8,8 @@ interface Props {
   setCurrLanguage: (newLanguage: string) => void
   currTime: number
   setCurrTime: (newTime: number) => void
+  zenMode: boolean
+  setZenMode: (zenMode: boolean) => void
 }
 
 const Header: React.FC<Props> = ({
@@ -17,6 +19,8 @@ const Header: React.FC<Props> = ({
   setCurrTheme,
   setCurrTime,
   currLanguage,
+  zenMode, 
+  setZenMode
 }) => {
   //const [isOpen, setIsOpen] = useState(false);
   const time_options = [15, 30, 45, 60]
@@ -30,6 +34,10 @@ const Header: React.FC<Props> = ({
     setCurrTime(newTime)
   }
 
+  const activateZenMode = (zm: boolean) => {
+    setZenMode(!zm);
+  }
+
   return (
     <header className={`header ${currTheme}`}>
       <div className={styles.logoparent} onClick={() => location.reload()}>
@@ -40,6 +48,13 @@ const Header: React.FC<Props> = ({
         </div>
       </div>
       <div className={styles.header_settings} style={{ color: 'white' }}>
+        <div className={styles.labels} style={{ color: 'white' }}>
+            <span className={`time-option ${
+                zenMode ? 'active' : ''
+              }`} onClick={() => activateZenMode(zenMode)}>
+              Zen
+            </span>
+        </div>
         <div className={styles.labels} style={{ color: 'white' }}>
           {language_options.map((language) => (
             <span

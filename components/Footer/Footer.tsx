@@ -7,11 +7,14 @@ export default function Footer() {
         </h2>
     </div>
     <div className={`bottom-area`}>
-      <div className="hint">
+      <div className="hint" style={{ marginLeft: '1rem' }}>
         <kbd>Enter</kbd> Go to Next Code
       </div>
-      <div className="hint">
+      <div className="hint" style={{ marginLeft: '1rem' }}>
         <kbd>Esc</kbd> Reset the prompt
+      </div>
+      <div className="hint" style={{ marginLeft: '1rem' }}>
+        <kbd>Shift</kbd> + <kbd>Enter</kbd> To end (if Zen)
       </div>
     </div>
     </>
