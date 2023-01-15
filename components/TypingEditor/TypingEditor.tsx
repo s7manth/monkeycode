@@ -31,7 +31,7 @@ const TypingGameDemo = ({
   setCorrectCharsTyped,
   setErrorCharsTyped,
   setHasEnded,
-  zenMode
+  zenMode,
 }: TypingGameDemoProps) => {
   useEffect(() => {
     const element = document.getElementsByClassName('curr-letter')[0]
@@ -61,11 +61,11 @@ const TypingGameDemo = ({
   } = useTypingGame(code, { skipCurrentWordOnSpace: false })
 
   const [accuracy, setAccuracy] = useState(0.0)
-  const [zm, setZm] = useState(zenMode);
+  const [zm, setZm] = useState(zenMode)
 
   useEffect(() => {
-    setZm(zenMode);
-  }, [zenMode]);
+    setZm(zenMode)
+  }, [zenMode])
 
   useEffect(() => {
     setAccuracy((curCorrectTyped * 100) / (curErrorTyped + curCorrectTyped))
@@ -173,12 +173,12 @@ const TypingGameDemo = ({
           <div
             className="typing-editor"
             onKeyDown={(e) => {
-              console.log(e, "lalalal", zm);
+              console.log(e, 'lalalal', zm)
               if (e.shiftKey && e.key === 'Enter' && zm) {
-                setHasEnded(true);
-              } else {
-                handleKey(e.key)
+                setHasEnded(true)
               }
+              handleKey(e.key)
+
               e.preventDefault()
             }}
             tabIndex={0}

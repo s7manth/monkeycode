@@ -19,7 +19,7 @@ const App = () => {
   const [correctCharsTyped, setCorrectCharsTyped] = useState<number[]>([0])
   const [errorCharsTyped, setErrorCharsTyped] = useState<number[]>([0])
 
-  const [zenMode, setZenMode] = useState<boolean>(false);
+  const [zenMode, setZenMode] = useState<boolean>(false)
 
   useEffect(() => {
     let filteredCodes = CODES.filter((obj) => obj.language == currLanguage)
@@ -54,6 +54,7 @@ const App = () => {
         setCurrTime={handleChangeTime}
         zenMode={zenMode}
         setZenMode={setZenMode}
+        isBlur={isBlur}
       />
       <div className={styles.left}>
         {!hasEnded && (

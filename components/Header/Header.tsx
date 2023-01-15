@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   setCurrTime: (newTime: number) => void
   zenMode: boolean
   setZenMode: (zenMode: boolean) => void
+  isBlur: boolean
 }
 
 const Header: React.FC<Props> = ({
@@ -19,12 +20,19 @@ const Header: React.FC<Props> = ({
   setCurrTheme,
   setCurrTime,
   currLanguage,
-  zenMode, 
-  setZenMode
+  zenMode,
+  setZenMode,
+  isBlur,
 }) => {
   //const [isOpen, setIsOpen] = useState(false);
   const time_options = [15, 30, 45, 60]
   const language_options = ['Python', 'CPP', 'Java', 'TS', 'Rust', 'Go']
+
+  const [blur, setIsBlur] = useState<boolean>(isBlur)
+
+  useEffect(() => {
+    setIsBlur(isBlur)
+  }, [isBlur])
 
   const handleLanguageChange = (newLanguage: string) => {
     setCurrLanguage(newLanguage)
@@ -35,7 +43,7 @@ const Header: React.FC<Props> = ({
   }
 
   const activateZenMode = (zm: boolean) => {
-    setZenMode(!zm);
+    setZenMode(!zm)
   }
 
   return (
@@ -47,13 +55,21 @@ const Header: React.FC<Props> = ({
           </h2>
         </div>
       </div>
-      <div className={styles.header_settings} style={{ color: 'white' }}>
+      <div
+        className={styles.header_settings}
+        style={{
+          color: 'white',
+          pointerEvents: `${blur === false ? 'none' : 'auto'}`,
+          filter: `${blur === false ? 'opacity(0)' : ''}`,
+        }}
+      >
         <div className={styles.labels} style={{ color: 'white' }}>
-            <span className={`time-option ${
-                zenMode ? 'active' : ''
-              }`} onClick={() => activateZenMode(zenMode)}>
-              Zen
-            </span>
+          <span
+            className={`time-option ${zenMode ? 'active' : ''}`}
+            onClick={() => activateZenMode(zenMode)}
+          >
+            Zen
+          </span>
         </div>
         <div className={styles.labels} style={{ color: 'white' }}>
           {language_options.map((language) => (
