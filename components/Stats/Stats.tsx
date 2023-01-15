@@ -34,10 +34,12 @@ function Stats(props: any) {
     plugins: {
       legend: {
         position: 'top' as const,
+        labels: {
+          padding: 20,
+        },
       },
       title: {
-        display: true,
-        text: 'Results',
+        display: false,
       },
     },
     scales: {
