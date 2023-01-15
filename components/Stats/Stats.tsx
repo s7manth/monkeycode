@@ -63,7 +63,7 @@ function Stats(props: any) {
 
   useEffect(() => {
     console.log(props)
-    if (!props || !props.correctCharsTyped) return
+    if (!props || !props.correctCharsTyped || !props.accuracy_list) return
     const _labels = Array(props.time || 30)
       .fill(0)
       .map((_, idx) => 1 + idx)
@@ -75,7 +75,7 @@ function Stats(props: any) {
     setTotalError(_totalError)
     setAverageWPM(
       ((_totalCorrect + _totalError) *
-        2 *
+        3 *
         props.accuracy_list[props.time - 1]) /
         100 /
         props.time,
@@ -101,7 +101,7 @@ function Stats(props: any) {
           data: props.correctCharsTyped.map(
             (value: number, idx: number) =>
               ((value + props.errorCharsTyped[idx]) *
-                2 *
+                3 *
                 props.accuracy_list[idx]) /
               100 /
               (idx + 1),

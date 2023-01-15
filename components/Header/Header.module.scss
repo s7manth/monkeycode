@@ -12,7 +12,10 @@
     align-items: center;
     background-color: var(--bg-color);
     height: 2rem;
-    border-right: 0.2rem solid $bgColor;
+    margin-right: 0.5rem;
+  }
+  .labels:hover {
+    box-shadow: 0px 0px 20px $underLineColor;
   }
 }
 
